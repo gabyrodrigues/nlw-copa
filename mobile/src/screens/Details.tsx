@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Share } from 'react-native'
+
 import { useRoute } from '@react-navigation/native'
+
 import { HStack, useToast, VStack } from 'native-base'
 
 import { Header } from '../components/Header'
-import { Loading } from '../components/Loading';
-import { api } from '../services/api';
-import { PoolCardProps } from '../components/PoolCard';
-import { PoolHeader } from '../components/PoolHeader';
-import { EmptyMyPoolList } from '../components/EmptyMyPoolList';
-import { Option } from '../components/Option';
+import { Loading } from '../components/Loading'
+import { Option } from '../components/Option'
+import { Guesses } from '../components/Guesses'
+import { PoolCardProps } from '../components/PoolCard'
+import { PoolHeader } from '../components/PoolHeader'
+import { EmptyMyPoolList } from '../components/EmptyMyPoolList'
+
+import { api } from '../services/api'
 
 interface RouteParams {
 	id: string;
@@ -81,6 +85,8 @@ export function Details() {
 							onPress={() => setOptionSelected('ranking')}
 						/>
 					</HStack>
+
+					<Guesses poolId={poolDetails.id} /> 
 				</VStack>
 			) : (
 				<EmptyMyPoolList code={poolDetails.code} onShare={handleCodeShare} />
